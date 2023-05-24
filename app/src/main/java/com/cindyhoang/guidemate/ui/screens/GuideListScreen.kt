@@ -1,6 +1,7 @@
 package com.cindyhoang.guidemate.ui.screens
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -14,10 +15,10 @@ import com.cindyhoang.guidemate.data.model.Guide
 import com.cindyhoang.guidemate.ui.viewmodel.GuideListViewModel
 
 @Composable
-fun GuideListScreen(viewModel: GuideListViewModel) {
+fun GuideListScreen(viewModel: GuideListViewModel, modifier: Modifier) {
     val guides by viewModel.guides.observeAsState(emptyList())
     
-    LazyColumn {
+    LazyColumn(modifier = modifier) {
         items(guides) { guide ->
             GuideListItem(guide = guide)
         }
@@ -26,7 +27,10 @@ fun GuideListScreen(viewModel: GuideListViewModel) {
 
 @Composable
 fun GuideListItem(guide: Guide) {
-    Column(modifier = Modifier.padding(all = 8.dp)) {
+    Column(modifier = Modifier
+        .padding(all = 8.dp)
+        .fillMaxWidth()
+    ) {
         Text(text = guide.name)
         Text(text = guide.startDate)
     }

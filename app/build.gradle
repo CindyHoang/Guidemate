@@ -20,10 +20,23 @@ android {
         }
     }
 
+    flavorDimensions "buildType"
+    productFlavors {
+        buildA {
+            dimension "buildType"
+            resValue "string", "app_name", "Build A"
+        }
+        buildB {
+            dimension "buildType"
+            resValue "string", "app_name", "Build B"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
     compileOptions {
