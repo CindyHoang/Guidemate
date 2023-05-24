@@ -38,7 +38,7 @@ class GuideListViewModelTest {
     }
 
     @Test
-    fun fetchGuides_success() = runBlocking {
+    fun fetchGuides() = runBlocking {
         val expectedGuides = listOf(
             Guide(
                 url = "url1",

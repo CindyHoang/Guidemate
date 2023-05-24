@@ -1,0 +1,35 @@
+{
+  "data": [
+    {
+      "url": "/guide/1",
+      "startDate": "Jan 1, 2023",
+      "endDate": "Jan 2, 2023",
+      "name": "First",
+      "icon": "icon_url_1",
+      "venue": {},
+      "objType": "guide",
+      "loginRequired": false
+    },
+    {
+      "url": "/guide/2",
+      "startDate": "Jun 24, 2023",
+      "endDate": "Jun 29, 2023",
+      "name": "Second",
+      "icon": "icon_url_2",
+      "venue": {},
+      "objType": "guide",
+      "loginRequired": false
+    },
+    {
+      "url": "/guide/3",
+      "startDate": "Dec 16, 2023",
+      "endDate": "Dec 17, 2023",
+      "name": "Third",
+      "icon": "icon_url_3",
+      "venue": {},
+      "objType": "guide",
+      "loginRequired": false
+    }
+  ],
+  "total": "3"
+}
