@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -40,11 +42,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     buildFeatures {
         compose true
@@ -86,6 +88,20 @@ dependencies {
     // ViewModel LiveData Compose Support
     implementation 'androidx.compose.runtime:runtime-livedata:1.5.0-alpha04'
 
+    // Dagger Hilt
+    implementation "com.google.dagger:hilt-android:2.44"
+    implementation 'androidx.test.ext:junit-ktx:1.1.5'
+    kapt "com.google.dagger:hilt-compiler:2.44"
+
+    // Coroutines Test
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
+
+    // Mockito core library
+    testImplementation 'org.mockito:mockito-core:5.3.0'
+
+    // InstantTaskExecutorRule
+    testImplementation "androidx.arch.core:core-testing:2.2.0"
+
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
     implementation 'androidx.activity:activity-compose:1.7.1'
@@ -101,4 +117,8 @@ dependencies {
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
+}
+
+kapt {
+    correctErrorTypes true
 }

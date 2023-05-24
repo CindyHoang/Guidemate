@@ -1,24 +1,26 @@
 package com.cindyhoang.guidemate.data.repository
 
 import com.cindyhoang.guidemate.data.model.Guide
-import com.cindyhoang.guidemate.data.network.NetworkClient
+import com.cindyhoang.guidemate.data.network.GuideService
+import javax.inject.Inject
 
-class GuideRepository {
-    private val guideService = NetworkClient.getGuideService()
-    private var cachedGuides: List<Guide>? = null
+class GuideRepository @Inject constructor(
+    private val guideService: GuideService
+) {
+    private var cachedGuides: List<Guide> = emptyList()
 
     suspend fun getUpcomingGuides(): List<Guide> {
-        if (cachedGuides == null) {
+        if (cachedGuides.isEmpty()) {
             val response = guideService.getUpcomingGuides()
             if (response.isSuccessful) {
                 val guideResponse = response.body()
-                cachedGuides = guideResponse?.guides?.map {it}
+                cachedGuides = guideResponse?.guides?.map { it } ?: emptyList()
             }
         }
-        return cachedGuides ?: emptyList()
+        return cachedGuides
     }
 
     fun clearCachedGuides() {
-        cachedGuides = null
+        cachedGuides = emptyList()
     }
 }
