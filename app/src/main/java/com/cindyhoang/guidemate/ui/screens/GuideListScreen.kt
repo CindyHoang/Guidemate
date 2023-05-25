@@ -11,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.cindyhoang.guidemate.data.model.Guide
 import com.cindyhoang.guidemate.ui.viewmodel.GuideListViewModel
 
@@ -31,7 +32,7 @@ fun GuideListItem(guide: Guide) {
         .padding(all = 8.dp)
         .fillMaxWidth()
     ) {
-        Text(text = guide.name)
-        Text(text = guide.startDate)
+        Text(text = guide.name, fontSize = 18.sp)
+        Text(text = guide.startDate + " to " + guide.endDate)
     }
 }
