@@ -1,9 +1,12 @@
 package com.cindyhoang.guidemate.data.network
 
+import com.cindyhoang.guidemate.data.model.Guide
 import com.cindyhoang.guidemate.data.model.GuidesResponse
+import com.cindyhoang.guidemate.data.model.ObjType
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import junit.framework.TestCase.assertNull
 import org.junit.Test
 import java.lang.Exception
 
@@ -18,7 +21,17 @@ class GuideListParsingTest {
         val guidesResponse: GuidesResponse? = adapter.fromJson(json)
 
         assert(guidesResponse?.guides?.isNotEmpty() == true)
-        assert(guidesResponse!!.guides[0].name == "First")
+
+        val firstGuide: Guide? = guidesResponse?.guides?.get(0)
+        assert(firstGuide!!.name == "First")
+        assert(firstGuide.url == "/guide/1")
+        assert(firstGuide.startDate == "Jan 1, 2023")
+        assert(firstGuide.endDate == "Jan 2, 2023")
+        assert(firstGuide.icon == "icon_url_1")
+        assert(firstGuide.objType == ObjType.guide)
+        assertNull(firstGuide.venue?.city)
+        assertNull(firstGuide.venue?.state)
+        assert(!firstGuide.loginRequired)
     }
 
     @Test
